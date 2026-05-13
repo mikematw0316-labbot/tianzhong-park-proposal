@@ -12,613 +12,194 @@
       --green-pale: #d8f3dc;
       --stone: #6b705c;
       --tan: #f2e8d9;
-      --white: #ffffff;
       --text-dark: #1b1b1b;
       --text-mid: #444;
-      --text-light: #888;
       --shadow: 0 4px 24px rgba(0,0,0,0.08);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Noto Sans TC', 'Microsoft JhengHei', '微軟正黑體', sans-serif;
-      background: #f7f9f7;
-      color: var(--text-dark);
-      line-height: 1.8;
-    }
-
-    /* ===== NAV ===== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(64,145,108,0.15);
-      padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
-    }
-
-    .nav-logo {
-      font-size: 0.85rem; font-weight: 700;
-      color: var(--green-dark);
-      letter-spacing: 0.05em;
-    }
-
-    .nav-links {
-      display: flex; gap: 1.5rem; list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.82rem;
-      text-decoration: none;
-      color: var(--text-mid);
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--green-dark); }
-
-    /* ===== HERO ===== */
-    .hero {
-      margin-top: 60px;
-      min-height: 90vh;
-      background:
-        linear-gradient(135deg, rgba(45,106,79,0.88) 0%, rgba(64,145,108,0.75) 60%, rgba(116,198,157,0.6) 100%),
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      background-size: cover, 60px 60px;
-      background-color: var(--green-dark);
-      display: flex; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 4rem 2rem;
-      position: relative; overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
-      background: linear-gradient(to top, #f7f9f7, transparent);
-    }
-
-    .hero-inner { max-width: 800px; color: #fff; }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 50px;
-      padding: 0.3rem 1rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 900;
-      line-height: 1.35;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.2);
-    }
-
-    .hero h2 {
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-      font-weight: 400;
-      opacity: 0.9;
-      margin-bottom: 2rem;
-    }
-
-    .hero-meta {
-      display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
-    }
-
-    .hero-meta-item {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 12px;
-      padding: 0.8rem 1.4rem;
-      text-align: center;
-    }
-
-    .hero-meta-label {
-      font-size: 0.7rem; opacity: 0.75; letter-spacing: 0.1em;
-      display: block; margin-bottom: 0.2rem;
-    }
-
-    .hero-meta-value {
-      font-size: 1rem; font-weight: 700;
-    }
-
-    /* ===== SECTION BASE ===== */
-    section { padding: 5rem 2rem; }
-    .container { max-width: 1100px; margin: 0 auto; }
-
-    .section-label {
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--green-mid);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-weight: 900;
-      color: var(--green-dark);
-      margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-      font-size: 1rem; color: var(--text-mid);
-      max-width: 640px;
-      margin-bottom: 3rem;
-    }
-
-    .divider {
-      width: 48px; height: 4px;
-      background: var(--green-light);
-      border-radius: 2px;
-      margin-bottom: 1rem;
-    }
-
-    /* ===== SUMMARY CARDS ===== */
-    #summary { background: #fff; }
-
-    .eval-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .eval-card {
-      background: var(--green-pale);
-      border-radius: 16px;
-      padding: 1.8rem;
-      border-left: 4px solid var(--green-mid);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .eval-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-    }
-
-    .eval-score {
-      font-size: 2.2rem; font-weight: 900;
-      color: var(--green-dark);
-      line-height: 1;
-    }
-
-    .eval-score span {
-      font-size: 0.9rem; font-weight: 400; color: var(--stone);
-    }
-
-    .eval-title {
-      font-size: 0.95rem; font-weight: 700;
-      margin: 0.5rem 0 0.8rem;
-      color: var(--text-dark);
-    }
-
-    .eval-desc {
-      font-size: 0.85rem; color: var(--text-mid);
-      line-height: 1.7;
-    }
-
-    /* ===== ENVIRONMENT ===== */
-    #environment { background: var(--tan); }
-
-    .env-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .env-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 1.8rem;
-      box-shadow: var(--shadow);
-    }
-
-    .env-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      background: var(--green-pale);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .env-card h4 {
-      font-size: 1rem; font-weight: 800;
-      color: var(--green-dark);
-      margin-bottom: 0.6rem;
-    }
-
-    .env-card p {
-      font-size: 0.88rem; color: var(--text-mid);
-      line-height: 1.75;
-    }
-
-    /* ===== CHALLENGES ===== */
-    #challenges { background: #fff; }
-
-    .challenge-list {
-      display: flex; flex-direction: column; gap: 1.5rem;
-    }
-
-    .challenge-item {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      background: #f8faf8;
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    @media (max-width: 600px) {
-      .challenge-item { grid-template-columns: 1fr; }
-    }
-
-    .challenge-problem {
-      padding: 1.8rem;
-      background: #fff3cd;
-      border-left: 4px solid #f59f00;
-    }
-
-    .challenge-solution {
-      padding: 1.8rem;
-      background: var(--green-pale);
-      border-left: 4px solid var(--green-mid);
-    }
-
-    .challenge-problem h4, .challenge-solution h4 {
-      font-size: 0.75rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      margin-bottom: 0.6rem;
-    }
-
-    .challenge-problem h4 { color: #e67700; }
-    .challenge-solution h4 { color: var(--green-dark); }
-
-    .challenge-problem h3, .challenge-solution h3 {
-      font-size: 1rem; font-weight: 800;
-      margin-bottom: 0.6rem;
-    }
-
-    .challenge-problem p, .challenge-solution p {
-      font-size: 0.88rem; color: var(--text-mid);
-      line-height: 1.75;
-    }
-
-    /* ===== DESIGN ===== */
-    #design { background: var(--green-dark); color: #fff; }
-
-    #design .section-title { color: #fff; }
-    #design .section-label { color: var(--green-light); }
-    #design .section-subtitle { color: rgba(255,255,255,0.75); }
-
-    .design-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.2rem;
-    }
-
-    .design-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: background 0.2s, transform 0.2s;
-    }
-
-    .design-card:hover {
-      background: rgba(255,255,255,0.15);
-      transform: translateY(-3px);
-    }
-
-    .design-card-icon {
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .design-card h4 {
-      font-size: 0.95rem; font-weight: 800;
-      margin-bottom: 0.5rem;
-    }
-
-    .design-card p {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.7;
-    }
-
-    /* ===== PLAN ===== */
-    #plan { background: #fff; }
-
-    .plan-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .plan-box {
-      border: 2px solid var(--green-pale);
-      border-radius: 16px;
-      padding: 2rem;
-      position: relative;
-    }
-
-    .plan-box-icon {
-      position: absolute; top: -1.2rem; left: 2rem;
-      width: 2.4rem; height: 2.4rem;
-      background: var(--green-mid);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; color: #fff;
-    }
-
-    .plan-box h3 {
-      font-size: 1.05rem; font-weight: 800;
-      color: var(--green-dark);
-      margin-bottom: 1rem;
-    }
-
-    .budget-row {
-      display: flex; justify-content: space-between;
-      align-items: center;
-      padding: 0.5rem 0;
-      border-bottom: 1px dashed #e0e0e0;
-      font-size: 0.88rem;
-    }
-
-    .budget-row:last-child { border-bottom: none; }
-
-    .budget-row .label { color: var(--text-mid); }
-
-    .budget-row .amount {
-      font-weight: 800; color: var(--green-dark);
-    }
-
-    .budget-row.total {
-      border-top: 2px solid var(--green-light);
-      border-bottom: none;
-      margin-top: 0.5rem;
-      padding-top: 0.8rem;
-    }
-
-    .budget-row.total .amount {
-      font-size: 1.1rem;
-      color: #d62728;
-    }
-
-    .timeline-item {
-      display: flex; gap: 1rem;
-      margin-bottom: 1.2rem;
-      align-items: flex-start;
-    }
-
-    .timeline-dot {
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: var(--green-mid);
-      margin-top: 6px; flex-shrink: 0;
-    }
-
-    .timeline-content h4 {
-      font-size: 0.9rem; font-weight: 700;
-    }
-
-    .timeline-content p {
-      font-size: 0.82rem; color: var(--text-mid);
-    }
-
-    /* ===== TEAM ===== */
-    #team { background: var(--tan); }
-
-    .team-main {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 2rem;
-      background: #fff;
-      border-radius: 20px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow);
-      align-items: start;
-    }
-
-    @media (max-width: 600px) {
-      .team-main { grid-template-columns: 1fr; }
-    }
-
-    .team-avatar {
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      background: var(--green-mid);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.5rem; color: #fff;
-      flex-shrink: 0;
-    }
-
-    .team-info h3 {
-      font-size: 1.3rem; font-weight: 900;
-      color: var(--green-dark);
-    }
-
-    .team-info .role {
-      font-size: 0.85rem; color: var(--green-mid);
-      font-weight: 700; margin-bottom: 0.6rem;
-    }
-
-    .team-info p {
-      font-size: 0.88rem; color: var(--text-mid);
-      line-height: 1.75;
-    }
-
-    .cert-list {
-      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem;
-    }
-
-    .cert-badge {
-      background: var(--green-pale);
-      color: var(--green-dark);
-      font-size: 0.75rem; font-weight: 700;
-      padding: 0.25rem 0.75rem;
-      border-radius: 50px;
-    }
-
-    .award-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.2rem;
-      margin-top: 2rem;
-    }
-
-    .award-card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 1.5rem;
-      display: flex; gap: 1rem;
-      align-items: flex-start;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    }
-
-    .award-icon {
-      font-size: 2rem; flex-shrink: 0;
-    }
-
-    .award-card h4 {
-      font-size: 0.9rem; font-weight: 800;
-      color: var(--green-dark);
-      margin-bottom: 0.3rem;
-    }
-
-    .award-card p {
-      font-size: 0.8rem; color: var(--text-mid);
-    }
-
-    /* ===== CSR ===== */
-    #csr { background: #fff; }
-
-    .csr-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .csr-card {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      background: var(--green-pale);
-      border-radius: 16px;
-    }
-
-    .csr-number {
-      font-size: 2.8rem; font-weight: 900;
-      color: var(--green-dark);
-      line-height: 1;
-    }
-
-    .csr-number sub {
-      font-size: 1rem; font-weight: 400; color: var(--stone);
-    }
-
-    .csr-label {
-      font-size: 0.9rem; font-weight: 700;
-      margin-top: 0.5rem; color: var(--text-dark);
-    }
-
-    .csr-desc {
-      font-size: 0.8rem; color: var(--text-mid);
-      margin-top: 0.4rem;
-    }
-
-    /* ===== CONCLUSION ===== */
-    #conclusion {
-      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
-      color: #fff;
-    }
-
-    #conclusion .section-title { color: #fff; }
-    #conclusion .section-label { color: var(--green-light); }
-
-    .conclusion-body {
-      max-width: 780px;
-      font-size: 1rem;
-      line-height: 2;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 3rem;
-    }
-
-    .value-add-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-    }
-
-    .value-add-item {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 1rem 1.2rem;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.85);
-    }
-
-    .value-add-item::before {
-      content: '✓';
-      color: var(--green-light);
-      font-weight: 900;
-      margin-right: 0.4rem;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: #1a1a1a;
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.82rem;
-    }
-
-    footer strong {
-      color: #fff;
-      display: block;
-      font-size: 0.95rem;
-      margin-bottom: 0.3rem;
-    }
-
-    /* ===== SCROLL SNAP hint ===== */
-    @media (prefers-reduced-motion: no-preference) {
-      .env-card, .eval-card, .design-card, .csr-card {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeUp 0.5s ease forwards;
-      }
-    }
-
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    body { font-family: 'Noto Sans TC','Microsoft JhengHei',sans-serif; background:#f7f9f7; color:var(--text-dark); line-height:1.8; }
+
+    /* NAV */
+    nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(255,255,255,0.95); backdrop-filter:blur(8px); border-bottom:1px solid rgba(64,145,108,0.15); padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:60px; }
+    .nav-logo { font-size:0.85rem; font-weight:700; color:var(--green-dark); }
+    .nav-links { display:flex; gap:1.5rem; list-style:none; }
+    .nav-links a { font-size:0.82rem; text-decoration:none; color:var(--text-mid); transition:color 0.2s; }
+    .nav-links a:hover { color:var(--green-dark); }
+    @media(max-width:700px){ .nav-links { display:none; } }
+
+    /* HERO */
+    .hero { margin-top:60px; min-height:90vh; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; padding:4rem 2rem; overflow:hidden; }
+    .hero-bg { position:absolute; inset:0; background-image:url('images/site_01_birdview.jpeg'); background-size:cover; background-position:center; }
+    .hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(45,106,79,0.88),rgba(64,145,108,0.75),rgba(116,198,157,0.55)); }
+    .hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:80px; background:linear-gradient(to top,#f7f9f7,transparent); }
+    .hero-inner { position:relative; z-index:1; max-width:800px; color:#fff; }
+    .hero-badge { display:inline-block; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); border-radius:50px; padding:0.3rem 1rem; font-size:0.8rem; letter-spacing:0.1em; margin-bottom:1.5rem; }
+    .hero h1 { font-size:clamp(1.8rem,4vw,3rem); font-weight:900; line-height:1.35; margin-bottom:0.5rem; text-shadow:0 2px 12px rgba(0,0,0,0.25); }
+    .hero h2 { font-size:clamp(1rem,2.5vw,1.4rem); font-weight:400; opacity:0.9; margin-bottom:2rem; }
+    .hero-meta { display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap; }
+    .hero-meta-item { background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.2); border-radius:12px; padding:0.8rem 1.4rem; text-align:center; }
+    .hero-meta-label { font-size:0.7rem; opacity:0.75; letter-spacing:0.1em; display:block; margin-bottom:0.2rem; }
+    .hero-meta-value { font-size:1rem; font-weight:700; }
+
+    /* SECTIONS */
+    section { padding:5rem 2rem; }
+    .container { max-width:1100px; margin:0 auto; }
+    .section-label { font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--green-mid); margin-bottom:0.5rem; }
+    .section-title { font-size:clamp(1.5rem,3vw,2.2rem); font-weight:900; color:var(--green-dark); margin-bottom:1rem; }
+    .section-subtitle { font-size:1rem; color:var(--text-mid); max-width:640px; margin-bottom:3rem; }
+    .divider { width:48px; height:4px; background:var(--green-light); border-radius:2px; margin-bottom:1rem; }
+
+    /* IMAGE GALLERY */
+    .img-grid { display:grid; gap:0.8rem; margin:2rem 0; }
+    .img-grid-2 { grid-template-columns:repeat(2,1fr); }
+    .img-grid-3 { grid-template-columns:repeat(3,1fr); }
+    .img-grid-4 { grid-template-columns:repeat(4,1fr); }
+    @media(max-width:700px){ .img-grid-3,.img-grid-4 { grid-template-columns:repeat(2,1fr); } .img-grid-2 { grid-template-columns:1fr; } }
+    .img-item { border-radius:12px; overflow:hidden; background:#eee; aspect-ratio:4/3; }
+    .img-item.tall { aspect-ratio:3/4; }
+    .img-item.wide { aspect-ratio:16/9; }
+    .img-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.3s; }
+    .img-item img:hover { transform:scale(1.03); }
+    .img-caption { font-size:0.78rem; color:var(--text-mid); text-align:center; margin-top:0.4rem; }
+
+    /* FULL-WIDTH IMAGE */
+    .img-full { width:100%; border-radius:16px; overflow:hidden; margin:2rem 0; box-shadow:var(--shadow); }
+    .img-full img { width:100%; display:block; }
+
+    /* EVAL CARDS */
+    #summary { background:#fff; }
+    .eval-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.5rem; }
+    .eval-card { background:var(--green-pale); border-radius:16px; padding:1.8rem; border-left:4px solid var(--green-mid); transition:transform 0.2s,box-shadow 0.2s; }
+    .eval-card:hover { transform:translateY(-4px); box-shadow:var(--shadow); }
+    .eval-score { font-size:2.2rem; font-weight:900; color:var(--green-dark); line-height:1; }
+    .eval-score span { font-size:0.9rem; font-weight:400; color:var(--stone); }
+    .eval-title { font-size:0.95rem; font-weight:700; margin:0.5rem 0 0.8rem; }
+    .eval-desc { font-size:0.85rem; color:var(--text-mid); line-height:1.7; }
+
+    /* ENV CARDS */
+    #environment { background:var(--tan); }
+    .env-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
+    .env-card { background:#fff; border-radius:16px; padding:1.8rem; box-shadow:var(--shadow); }
+    .env-icon { width:48px; height:48px; border-radius:12px; background:var(--green-pale); display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:1rem; }
+    .env-card h4 { font-size:1rem; font-weight:800; color:var(--green-dark); margin-bottom:0.6rem; }
+    .env-card p { font-size:0.88rem; color:var(--text-mid); line-height:1.75; }
+
+    /* CHALLENGES */
+    #challenges { background:#fff; }
+    .challenge-list { display:flex; flex-direction:column; gap:1.5rem; }
+    .challenge-item { display:grid; grid-template-columns:1fr 1fr; gap:1rem; background:#f8faf8; border-radius:16px; overflow:hidden; }
+    @media(max-width:600px){ .challenge-item { grid-template-columns:1fr; } }
+    .challenge-problem { padding:1.8rem; background:#fff3cd; border-left:4px solid #f59f00; }
+    .challenge-solution { padding:1.8rem; background:var(--green-pale); border-left:4px solid var(--green-mid); }
+    .challenge-problem h4 { font-size:0.75rem; font-weight:700; letter-spacing:0.1em; margin-bottom:0.6rem; color:#e67700; }
+    .challenge-solution h4 { font-size:0.75rem; font-weight:700; letter-spacing:0.1em; margin-bottom:0.6rem; color:var(--green-dark); }
+    .challenge-problem h3,.challenge-solution h3 { font-size:1rem; font-weight:800; margin-bottom:0.6rem; }
+    .challenge-problem p,.challenge-solution p { font-size:0.88rem; color:var(--text-mid); line-height:1.75; }
+
+    /* DESIGN */
+    #design { background:var(--green-dark); color:#fff; }
+    #design .section-title { color:#fff; }
+    #design .section-label { color:var(--green-light); }
+    #design .section-subtitle { color:rgba(255,255,255,0.75); }
+    .design-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.2rem; }
+    .design-card { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:1.5rem; text-align:center; transition:background 0.2s,transform 0.2s; }
+    .design-card:hover { background:rgba(255,255,255,0.15); transform:translateY(-3px); }
+    .design-card-icon { font-size:2rem; margin-bottom:0.8rem; }
+    .design-card h4 { font-size:0.95rem; font-weight:800; margin-bottom:0.5rem; }
+    .design-card p { font-size:0.82rem; color:rgba(255,255,255,0.7); line-height:1.7; }
+    .img-grid-dark .img-item { border:2px solid rgba(255,255,255,0.1); }
+
+    /* PLAN */
+    #plan { background:#fff; }
+    .plan-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
+    .plan-box { border:2px solid var(--green-pale); border-radius:16px; padding:2rem; position:relative; }
+    .plan-box-icon { position:absolute; top:-1.2rem; left:2rem; width:2.4rem; height:2.4rem; background:var(--green-mid); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; color:#fff; }
+    .plan-box h3 { font-size:1.05rem; font-weight:800; color:var(--green-dark); margin-bottom:1rem; }
+    .budget-row { display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px dashed #e0e0e0; font-size:0.88rem; }
+    .budget-row:last-child { border-bottom:none; }
+    .budget-row .label { color:var(--text-mid); }
+    .budget-row .amount { font-weight:800; color:var(--green-dark); }
+    .budget-row.total { border-top:2px solid var(--green-light); border-bottom:none; margin-top:0.5rem; padding-top:0.8rem; }
+    .budget-row.total .amount { font-size:1.1rem; color:#d62728; }
+    .timeline-item { display:flex; gap:1rem; margin-bottom:1.2rem; align-items:flex-start; }
+    .timeline-dot { width:12px; height:12px; border-radius:50%; background:var(--green-mid); margin-top:6px; flex-shrink:0; }
+    .timeline-content h4 { font-size:0.9rem; font-weight:700; }
+    .timeline-content p { font-size:0.82rem; color:var(--text-mid); }
+
+    /* TEAM */
+    #team { background:var(--tan); }
+    .team-main { display:grid; grid-template-columns:auto 1fr; gap:2rem; background:#fff; border-radius:20px; padding:2rem; margin-bottom:2rem; box-shadow:var(--shadow); align-items:start; }
+    @media(max-width:600px){ .team-main { grid-template-columns:1fr; } }
+    .team-avatar { width:100px; height:100px; border-radius:50%; background:var(--green-mid); display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#fff; flex-shrink:0; }
+    .team-info h3 { font-size:1.3rem; font-weight:900; color:var(--green-dark); }
+    .team-info .role { font-size:0.85rem; color:var(--green-mid); font-weight:700; margin-bottom:0.6rem; }
+    .team-info p { font-size:0.88rem; color:var(--text-mid); line-height:1.75; }
+    .cert-list { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.8rem; }
+    .cert-badge { background:var(--green-pale); color:var(--green-dark); font-size:0.75rem; font-weight:700; padding:0.25rem 0.75rem; border-radius:50px; }
+    .award-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.2rem; margin-top:2rem; }
+    .award-card { background:#fff; border-radius:16px; padding:1.5rem; display:flex; gap:1rem; align-items:flex-start; box-shadow:0 2px 12px rgba(0,0,0,0.05); }
+    .award-icon { font-size:2rem; flex-shrink:0; }
+    .award-card h4 { font-size:0.9rem; font-weight:800; color:var(--green-dark); margin-bottom:0.3rem; }
+    .award-card p { font-size:0.8rem; color:var(--text-mid); }
+
+    /* SUPERVISION */
+    #supervision { background:#fff; }
+
+    /* CSR */
+    #csr { background:var(--tan); }
+    .csr-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1.5rem; }
+    .csr-card { text-align:center; padding:2rem 1.5rem; background:#fff; border-radius:16px; box-shadow:var(--shadow); }
+    .csr-number { font-size:2.8rem; font-weight:900; color:var(--green-dark); line-height:1; }
+    .csr-number sub { font-size:1rem; font-weight:400; color:var(--stone); }
+    .csr-label { font-size:0.9rem; font-weight:700; margin-top:0.5rem; }
+    .csr-desc { font-size:0.8rem; color:var(--text-mid); margin-top:0.4rem; }
+
+    /* CONCLUSION */
+    #conclusion { background:linear-gradient(135deg,var(--green-dark),var(--green-mid)); color:#fff; }
+    #conclusion .section-title { color:#fff; }
+    #conclusion .section-label { color:var(--green-light); }
+    .conclusion-body { max-width:780px; font-size:1rem; line-height:2; color:rgba(255,255,255,0.9); margin-bottom:3rem; }
+    .value-add-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; }
+    .value-add-item { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:12px; padding:1rem 1.2rem; font-size:0.85rem; color:rgba(255,255,255,0.85); }
+    .value-add-item::before { content:'✓'; color:var(--green-light); font-weight:900; margin-right:0.4rem; }
+
+    /* LIGHTBOX */
+    .lightbox { display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.92); align-items:center; justify-content:center; }
+    .lightbox.active { display:flex; }
+    .lightbox img { max-width:90vw; max-height:90vh; border-radius:8px; object-fit:contain; }
+    .lightbox-close { position:absolute; top:1rem; right:1.5rem; color:#fff; font-size:2.5rem; cursor:pointer; line-height:1; }
+    .img-item img { cursor:zoom-in; }
+
+    footer { background:#1a1a1a; color:rgba(255,255,255,0.6); text-align:center; padding:2rem; font-size:0.82rem; }
+    footer strong { color:#fff; display:block; font-size:0.95rem; margin-bottom:0.3rem; }
   </style>
 </head>
 <body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-logo">鵬程工程顧問有限公司</div>
   <ul class="nav-links">
     <li><a href="#summary">彙整</a></li>
-    <li><a href="#environment">環境分析</a></li>
-    <li><a href="#design">設計構想</a></li>
+    <li><a href="#environment">環境</a></li>
+    <li><a href="#design">設計</a></li>
     <li><a href="#plan">執行計畫</a></li>
     <li><a href="#team">服務團隊</a></li>
-    <li><a href="#csr">企業責任</a></li>
+    <li><a href="#supervision">監造</a></li>
+    <li><a href="#csr">CSR</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="hero-badge">服務建議書 ｜ 民國 114 年 4 月</div>
     <h1>彰化縣彰化市<br>田中社區休憩公園建置工程</h1>
@@ -644,64 +225,44 @@
   </div>
 </div>
 
-<!-- SUMMARY 彙整表 -->
+<!-- SUMMARY -->
 <section id="summary">
   <div class="container">
     <div class="section-label">評選彙整</div>
     <div class="divider"></div>
     <h2 class="section-title">評選項目說明</h2>
     <p class="section-subtitle">依據評選項目配分，本公司就各項目提出詳盡說明，展現完整執行能力與競爭優勢。</p>
-
     <div class="eval-grid">
       <div class="eval-card">
         <div class="eval-score">31 <span>/ 100分</span></div>
         <div class="eval-title">承包本案企劃書內容</div>
-        <div class="eval-desc">
-          已實地走訪踏勘、測量，依現場情形施行現況分析。
-          填土整地、排水改善、步道鋪設及草坪種植為優先改善項目，
-          並搭配景觀燈具與噴灌設施完善空間。
-        </div>
+        <div class="eval-desc">已實地走訪踏勘、測量，依現場情形施行現況分析。填土整地、排水改善、步道鋪設及草坪種植為優先改善項目，並搭配景觀燈具與噴灌設施完善空間。</div>
       </div>
       <div class="eval-card">
         <div class="eval-score">28 <span>/ 100分</span></div>
         <div class="eval-title">近5年相關履約實績</div>
-        <div class="eval-desc">
-          承攬景觀改善設計監造案近百件，
-          多項工程查核獲甲等優良成績，
-          113年榮獲彰化縣「公共工程優質獎」優等。
-        </div>
+        <div class="eval-desc">承攬景觀改善設計監造案近百件，多項工程查核獲甲等優良成績，113年榮獲彰化縣「公共工程優質獎」優等。</div>
       </div>
       <div class="eval-card">
         <div class="eval-score">20 <span>/ 100分</span></div>
         <div class="eval-title">報價明細合理性及完整性</div>
-        <div class="eval-desc">
-          工程費 NT$8,985,390 元，
-          服務費採總包價法，
-          本公司以 NT$780,000 元整承攬本案。
-        </div>
+        <div class="eval-desc">工程費 NT$8,985,390 元，服務費採總包價法，本公司以 NT$780,000 元整承攬本案。</div>
       </div>
       <div class="eval-card">
         <div class="eval-score">15 <span>/ 100分</span></div>
         <div class="eval-title">簡報與答詢</div>
-        <div class="eval-desc">
-          針對標的物瞭解、主要問題認知及建議事項，
-          提供專業簡報說明，展現對本案深度理解。
-        </div>
+        <div class="eval-desc">針對標的物瞭解、主要問題認知及建議事項，提供專業簡報說明，展現對本案深度理解。</div>
       </div>
       <div class="eval-card">
         <div class="eval-score">6 <span>/ 100分</span></div>
         <div class="eval-title">廠商企業社會責任 (CSR)</div>
-        <div class="eval-desc">
-          三年調薪六次，調薪幅度達5%；
-          員工薪資超過三萬元；
-          實施周休二日；綠色採購申報達 NT$1,222,404 元。
-        </div>
+        <div class="eval-desc">三年調薪六次達5%；員工薪資超三萬元；實施周休二日；綠色採購申報達 NT$1,222,404 元。</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ENVIRONMENT 環境分析 -->
+<!-- ENVIRONMENT -->
 <section id="environment">
   <div class="container">
     <div class="section-label">環境分析</div>
@@ -709,55 +270,88 @@
     <h2 class="section-title">基地環境全面解析</h2>
     <p class="section-subtitle">深入了解基地特性，才能提出最適切的規劃設計對策。</p>
 
-    <div class="env-grid">
+    <!-- 鳥瞰 + 位置 -->
+    <div class="img-grid img-grid-2">
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)">
+          <img src="images/site_01_birdview.jpeg" alt="公園現況鳥瞰照片">
+        </div>
+        <div class="img-caption">公園現況鳥瞰照片</div>
+      </div>
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)">
+          <img src="images/site_02_location.jpeg" alt="本案基地位置">
+        </div>
+        <div class="img-caption">本案基地位置圖</div>
+      </div>
+    </div>
+
+    <!-- 分析圖 -->
+    <div class="img-grid img-grid-2" style="margin-top:1rem;">
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)">
+          <img src="images/analysis_01_neighbor.jpeg" alt="鄰近資源分析圖">
+        </div>
+        <div class="img-caption">鄰近資源分析圖</div>
+      </div>
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)">
+          <img src="images/analysis_02_solar.jpeg" alt="日照分析圖">
+        </div>
+        <div class="img-caption">日照與季風分析圖</div>
+      </div>
+    </div>
+
+    <!-- 現況照片 -->
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--green-dark);margin:2.5rem 0 1rem;">基地現況照片</h3>
+    <div class="img-grid img-grid-3">
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/site_03_current.jpeg" alt="基地現況"></div>
+        <div class="img-caption">基地整體現況</div>
+      </div>
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/site_04_pool.jpeg" alt="既有水池漏水"></div>
+        <div class="img-caption">既有水池漏水淤積</div>
+      </div>
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/site_05_underbridge.jpeg" alt="橋下空間"></div>
+        <div class="img-caption">橋下空間現況</div>
+      </div>
+    </div>
+
+    <!-- ENV CARDS -->
+    <div class="env-grid" style="margin-top:3rem;">
       <div class="env-card">
         <div class="env-icon">📍</div>
         <h4>地理位置</h4>
-        <p>彰化縣彰化市田中路上，位於國道三號快官交流道高架橋下。自駕從國道下來後，車程約 5 分鐘即可抵達，交通連接便捷。</p>
-      </div>
-      <div class="env-card">
-        <div class="env-icon">🏞️</div>
-        <h4>橋下空間特性</h4>
-        <p>橋體提供天然遮陽避雨優勢，適合全天候使用。然橋墩結構影響視覺開闊感，光照條件受限，需特別設計照明方案。</p>
+        <p>彰化縣彰化市田中路上，位於國道三號快官交流道高架橋下。自駕車程約 5 分鐘，交通便捷，橋體提供天然遮陽避雨優勢。</p>
       </div>
       <div class="env-card">
         <div class="env-icon">🌾</div>
         <h4>周邊產業</h4>
-        <p>以農業為主，包括水稻（台稉9號、16號）、蔬菜、荔枝、柑橘、放山雞等。近年發展休閒農業與農事體驗，帶動農業轉型。</p>
+        <p>農業以水稻（台稉9號、16號）、蔬菜、荔枝、放山雞為主。近年發展休閒農業與農事體驗，地方農業轉型積極。</p>
       </div>
       <div class="env-card">
         <div class="env-icon">🌬️</div>
         <h4>日照與季風</h4>
-        <p>9至5月盛行東北風，6月起轉西南風，風速 3.4～8.2 m/sec。橋下長期受遮擋，日照不足，植栽須選擇耐陰性強之品種。</p>
+        <p>9至5月盛行東北風，6月起轉西南風。橋下長期受遮擋，日照不足，植栽須選擇耐陰性強之品種，並補充人工照明。</p>
       </div>
       <div class="env-card">
         <div class="env-icon">🔍</div>
         <h4>現況問題</h4>
-        <p>
-          ① 既有水池漏水、泥沙淤積<br>
-          ② 噴水設施故障<br>
-          ③ 圍籬需還給高公局<br>
-          ④ 北側空地雜草叢生<br>
-          ⑤ 排水不良，易積水
-        </p>
-      </div>
-      <div class="env-card">
-        <div class="env-icon">🏘️</div>
-        <h4>周邊資源</h4>
-        <p>緊鄰既有田中公園（含兒童遊戲場）、萬興宮（里民信仰中心）及田中里辦公室，具良好社區連結條件。</p>
+        <p>① 既有水池漏水、泥沙淤積<br>② 噴水設施故障<br>③ 圍籬需還給高公局<br>④ 北側空地雜草叢生<br>⑤ 排水不良，易積水</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CHALLENGES 課題與對策 -->
+<!-- CHALLENGES -->
 <section id="challenges">
   <div class="container">
     <div class="section-label">課題分析</div>
     <div class="divider"></div>
     <h2 class="section-title">三大課題與對策</h2>
     <p class="section-subtitle">針對基地特性提出精準對策，化劣勢為設計亮點。</p>
-
     <div class="challenge-list">
       <div class="challenge-item">
         <div class="challenge-problem">
@@ -768,7 +362,7 @@
         <div class="challenge-solution">
           <h4>對策</h4>
           <h3>人工照明 + 耐陰植栽</h3>
-          <p>設置柔和 LED 景觀高燈（色溫 3000K 以下，Ra > 70），選用耐陰性強植物：白鶴芋、鵝掌藤、台灣海桐、金門赤楠。陰暗區以卵石地坪替代植栽，減輕維管負擔。</p>
+          <p>設置柔和 LED 景觀高燈（色溫 3000K 以下，Ra > 70），選用白鶴芋、鵝掌藤、台灣海桐、金門赤楠。陰暗區以卵石地坪替代植栽。</p>
         </div>
       </div>
       <div class="challenge-item">
@@ -780,7 +374,7 @@
         <div class="challenge-solution">
           <h4>對策</h4>
           <h3>透水鋪面 + 系統排水</h3>
-          <p>全區採透水高壓磚鋪面，每 50 公尺設置陰井，並以 HDPE 透水網管連接，銜接至基地兩側側溝，有效引導雨水快速排除。</p>
+          <p>全區採透水高壓磚鋪面，每 50 公尺設置陰井，HDPE 透水網管連接，銜接至基地兩側側溝，有效引導雨水快速排除。</p>
         </div>
       </div>
       <div class="challenge-item">
@@ -799,15 +393,34 @@
   </div>
 </section>
 
-<!-- DESIGN 設計構想 -->
+<!-- DESIGN -->
 <section id="design">
   <div class="container">
     <div class="section-label">設計構想</div>
-    <div class="divider" style="background: rgba(255,255,255,0.3);"></div>
-    <h2 class="section-title">規劃設計六大面向</h2>
+    <div class="divider" style="background:rgba(255,255,255,0.3);"></div>
+    <h2 class="section-title">規劃設計</h2>
     <p class="section-subtitle">以在地需求為核心，結合農村特色，打造全天候、多功能的社區休憩空間。</p>
 
-    <div class="design-grid">
+    <!-- 平面配置圖 -->
+    <div class="img-full" onclick="openLightbox(this.querySelector('.img-item'))" style="cursor:zoom-in;">
+      <img src="images/design_02_layout.jpeg" alt="平面配置圖" style="border-radius:16px;">
+    </div>
+    <div class="img-caption" style="text-align:center;margin-top:0.5rem;color:rgba(255,255,255,0.7);">平面配置圖</div>
+
+    <!-- 入口意象 + 示意圖 -->
+    <div class="img-grid img-grid-2 img-grid-dark" style="margin-top:2rem;">
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/design_03_entrance.jpeg" alt="入口意象示意圖"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">入口意象示意圖</div>
+      </div>
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/design_01_siteplan.jpeg" alt="規劃範圍圖"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">規劃範圍圖</div>
+      </div>
+    </div>
+
+    <!-- 設計 6 大面向 -->
+    <div class="design-grid" style="margin-top:3rem;">
       <div class="design-card">
         <div class="design-card-icon">🚶</div>
         <h4>洄遊步道</h4>
@@ -821,7 +434,7 @@
       <div class="design-card">
         <div class="design-card-icon">💡</div>
         <h4>景觀照明</h4>
-        <p>LED 景觀高燈為主，色溫 3000K 以下，演色性 Ra > 70，營造溫暖安全的夜間環境。</p>
+        <p>LED 景觀高燈，色溫 3000K 以下，演色性 Ra > 70，營造溫暖安全的夜間環境。</p>
       </div>
       <div class="design-card">
         <div class="design-card-icon">⛲</div>
@@ -831,7 +444,7 @@
       <div class="design-card">
         <div class="design-card-icon">🌱</div>
         <h4>耐陰植栽</h4>
-        <p>選種白鶴芋、鵝掌藤、台灣海桐，複層灌木配置。陰暗處以卵石地坪呈現自然景觀。</p>
+        <p>白鶴芋、鵝掌藤、台灣海桐，複層灌木配置。陰暗處以卵石地坪呈現自然景觀。</p>
       </div>
       <div class="design-card">
         <div class="design-card-icon">💧</div>
@@ -840,121 +453,130 @@
       </div>
     </div>
 
-    <div style="margin-top: 3rem; background: rgba(255,255,255,0.1); border-radius: 20px; padding: 2rem;">
-      <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 1rem;">在地需求融入設計</h3>
-      <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.9;">
-        備標階段已親赴現場拜訪里長及社區發展協會總幹事，
-        掌握第一手需求：移除雜木整平 → 步道鋪設 → 景觀燈具 → 排水改善 → 噴灌系統 → 入口意象重整及噴水池修繕。
-        設計完整呼應在地居民期待，讓空間真正服務社區。
-      </p>
+    <!-- 模擬圖 4張 -->
+    <h3 style="font-size:1.05rem;font-weight:800;color:rgba(255,255,255,0.9);margin:3rem 0 1rem;">設計模擬圖</h3>
+    <div class="img-grid img-grid-2 img-grid-dark">
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/render_01_playground.jpeg" alt="既有遊戲區及景觀步道"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">既有遊戲區及景觀步道模擬</div>
+      </div>
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/render_02_walkway.jpeg" alt="景觀步道模擬"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">景觀步道模擬圖</div>
+      </div>
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/render_03_path.jpeg" alt="景觀步道及卵石地坪"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">景觀步道及卵石地坪、地毯草</div>
+      </div>
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/render_04_seat.jpeg" alt="景觀座椅及燈具"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">景觀座椅及景觀燈具模擬</div>
+      </div>
+    </div>
+
+    <!-- 夜間照明 -->
+    <h3 style="font-size:1.05rem;font-weight:800;color:rgba(255,255,255,0.9);margin:3rem 0 1rem;">照明計畫</h3>
+    <div class="img-grid img-grid-3 img-grid-dark">
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/lighting_01_plan.jpeg" alt="照明計畫圖"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">照明計畫圖</div>
+      </div>
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/lighting_02_night.jpeg" alt="夜間照明模擬圖"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">夜間照明模擬圖 1</div>
+      </div>
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/lighting_03_night2.jpeg" alt="夜間照明模擬圖2"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">夜間照明模擬圖 2</div>
+      </div>
+    </div>
+
+    <!-- 植栽 + 設備 -->
+    <h3 style="font-size:1.05rem;font-weight:800;color:rgba(255,255,255,0.9);margin:3rem 0 1rem;">植栽計畫 ／ 硬體設備</h3>
+    <div class="img-grid img-grid-3 img-grid-dark">
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/planting_01_plan.jpeg" alt="植栽計畫圖"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">植栽及排水計畫圖</div>
+      </div>
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/equip_01_seat.jpeg" alt="景觀座椅示意"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">景觀座椅示意圖</div>
+      </div>
+      <div>
+        <div class="img-item wide" onclick="openLightbox(this)"><img src="images/equip_02_lamp.jpeg" alt="景觀高燈示意"></div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.7);">景觀高燈示意圖</div>
+      </div>
+    </div>
+
+    <!-- 在地需求 -->
+    <div style="margin-top:3rem;background:rgba(255,255,255,0.1);border-radius:20px;padding:2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;">
+      <div>
+        <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:1rem;">在地需求融入設計</h3>
+        <p style="font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.9;">備標階段已親赴現場拜訪里長及社區發展協會總幹事，掌握第一手需求：移除雜木整平 → 步道鋪設 → 景觀燈具 → 排水改善 → 噴灌系統 → 入口意象重整及噴水池修繕。設計完整呼應在地居民期待，讓空間真正服務社區。</p>
+      </div>
+      <div style="flex-shrink:0;">
+        <div class="img-item" style="width:200px;height:150px;border:2px solid rgba(255,255,255,0.2);border-radius:12px;overflow:hidden;" onclick="openLightbox(this)">
+          <img src="images/visit_01_chief.jpeg" alt="拜訪里長">
+        </div>
+        <div class="img-caption" style="color:rgba(255,255,255,0.6);margin-top:0.4rem;">實地拜訪里長</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PLAN 執行計畫 -->
+<!-- PLAN -->
 <section id="plan">
   <div class="container">
     <div class="section-label">執行計畫</div>
     <div class="divider"></div>
     <h2 class="section-title">預算與時程規劃</h2>
     <p class="section-subtitle">務實精準的費用分析，清晰可執行的作業時程安排。</p>
-
     <div class="plan-grid">
       <div class="plan-box">
         <div class="plan-box-icon">💰</div>
         <h3>工程總預算</h3>
-        <div class="budget-row">
-          <span class="label">直接工程費（分項）</span>
-          <span class="amount">6,968,289</span>
-        </div>
-        <div class="budget-row">
-          <span class="label">直接工程費（共同）</span>
-          <span class="amount">1,028,868</span>
-        </div>
-        <div class="budget-row">
-          <span class="label">空氣污染防制費</span>
-          <span class="amount">19,511</span>
-        </div>
-        <div class="budget-row">
-          <span class="label">工程管理費</span>
-          <span class="amount">188,722</span>
-        </div>
-        <div class="budget-row">
-          <span class="label">委託設計監造費</span>
-          <span class="amount">780,000</span>
-        </div>
-        <div class="budget-row total">
-          <span class="label" style="font-weight:800;">工程總計</span>
-          <span class="amount">8,985,390 元</span>
-        </div>
+        <div class="budget-row"><span class="label">直接工程費（分項）</span><span class="amount">6,968,289</span></div>
+        <div class="budget-row"><span class="label">直接工程費（共同）</span><span class="amount">1,028,868</span></div>
+        <div class="budget-row"><span class="label">空氣污染防制費</span><span class="amount">19,511</span></div>
+        <div class="budget-row"><span class="label">工程管理費</span><span class="amount">188,722</span></div>
+        <div class="budget-row"><span class="label">委託設計監造費</span><span class="amount">780,000</span></div>
+        <div class="budget-row total"><span class="label" style="font-weight:800;">工程總計</span><span class="amount">8,985,390 元</span></div>
       </div>
-
       <div class="plan-box">
         <div class="plan-box-icon">📋</div>
         <h3>委託技術服務費</h3>
-        <div class="budget-row">
-          <span class="label">相關丈量工作</span>
-          <span class="amount">15,600</span>
-        </div>
-        <div class="budget-row">
-          <span class="label">基本設計及經費概估</span>
-          <span class="amount">93,500</span>
-        </div>
-        <div class="budget-row">
-          <span class="label">工程細部設計</span>
-          <span class="amount">117,000</span>
-        </div>
-        <div class="budget-row">
-          <span class="label">其他設計項目</span>
-          <span class="amount">202,900</span>
-        </div>
-        <div class="budget-row">
-          <span class="label">施工監造費用（含稅）</span>
-          <span class="amount">351,000</span>
-        </div>
-        <div class="budget-row total">
-          <span class="label" style="font-weight:800;">服務費報價</span>
-          <span class="amount">780,000 元</span>
-        </div>
+        <div class="budget-row"><span class="label">相關丈量工作</span><span class="amount">15,600</span></div>
+        <div class="budget-row"><span class="label">基本設計及經費概估</span><span class="amount">93,500</span></div>
+        <div class="budget-row"><span class="label">工程細部設計</span><span class="amount">117,000</span></div>
+        <div class="budget-row"><span class="label">其他設計項目</span><span class="amount">202,900</span></div>
+        <div class="budget-row"><span class="label">施工監造費用（含稅）</span><span class="amount">351,000</span></div>
+        <div class="budget-row total"><span class="label" style="font-weight:800;">服務費報價</span><span class="amount">780,000 元</span></div>
       </div>
-
       <div class="plan-box">
         <div class="plan-box-icon">📅</div>
         <h3>作業期程</h3>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h4>規劃設計階段</h4>
-            <p>40 曆天（不含審查修改）<br>預定 114 年 7 月 29 日前完成</p>
-          </div>
+          <div class="timeline-content"><h4>規劃設計階段</h4><p>40 曆天（不含審查修改）<br>預定 114 年 7 月 29 日前完成</p></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h4>招標發包</h4>
-            <p>審查通過後辦理工程採購程序</p>
-          </div>
+          <div class="timeline-content"><h4>招標發包</h4><p>審查通過後辦理工程採購程序</p></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <h4>施工監造階段</h4>
-            <p>施工期程 75 天<br>預定 114 年 11 月下旬竣工</p>
-          </div>
+          <div class="timeline-content"><h4>施工監造階段</h4><p>施工期程 75 天<br>預定 114 年 11 月下旬竣工</p></div>
         </div>
         <div class="timeline-item" style="margin-bottom:0">
-          <div class="timeline-dot" style="background: #f59f00;"></div>
-          <div class="timeline-content">
-            <h4>驗收完成</h4>
-            <p>114 年底前移交管理單位</p>
-          </div>
+          <div class="timeline-dot" style="background:#f59f00;"></div>
+          <div class="timeline-content"><h4>驗收完成</h4><p>114 年底前移交管理單位</p></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TEAM 服務團隊 -->
+<!-- TEAM -->
 <section id="team">
   <div class="container">
     <div class="section-label">服務團隊</div>
@@ -962,37 +584,26 @@
     <h2 class="section-title">專業團隊陣容</h2>
     <p class="section-subtitle">橫跨景觀、土木、結構、水利等多專業領域，全方位守護工程品質。</p>
 
-    <!-- 計畫主持人 -->
     <div class="team-main">
       <div class="team-avatar">彭</div>
       <div class="team-info">
         <h3>彭成麒</h3>
         <div class="role">負責人 ／ 計畫主持人 ／ 年資 20 年</div>
-        <p>
-          學歷：國立台灣大學土木工程研究所碩士<br>
-          現職：新北市工程技術顧問同業公會副理事長兼常務理事<br>
-          台北市基礎工程學會理事、台灣區基礎工程學會理事<br>
-          曾任：北部後備司令部建築工程官、多間工程顧問公司執業技師
-        </p>
+        <p>學歷：國立台灣大學土木工程研究所碩士<br>現職：新北市工程技術顧問同業公會副理事長兼常務理事、台北市基礎工程學會理事</p>
         <div class="cert-list">
           <span class="cert-badge">土木技師 #006058</span>
           <span class="cert-badge">大地技師 #007013</span>
           <span class="cert-badge">無障礙設施設備勘檢人員</span>
-          <span class="cert-badge">建築物外牆相關認證</span>
         </div>
       </div>
     </div>
 
-    <!-- 協同主持人 -->
     <div class="team-main">
       <div class="team-avatar">易</div>
       <div class="team-info">
         <h3>易楊翰</h3>
         <div class="role">設計副理 ／ 協同計畫主持人 ／ 年資 7 年</div>
-        <p>
-          學歷：國立高雄應用科技大學土木工程系碩士<br>
-          專長：水利工程設計監造、建築物耐震評估及結構補強、防水工程設計監造
-        </p>
+        <p>學歷：國立高雄應用科技大學土木工程系碩士<br>專長：水利工程設計監造、建築物耐震評估及結構補強、防水工程設計監造</p>
         <div class="cert-list">
           <span class="cert-badge">甲種職業安全衛生業務主管</span>
           <span class="cert-badge">公共工程品質管理</span>
@@ -1002,26 +613,43 @@
     </div>
 
     <!-- 公司規模 -->
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap:1rem; margin-bottom:2rem;">
-      <div style="background:#fff; border-radius:12px; padding:1.2rem; text-align:center;">
-        <div style="font-size:2rem; font-weight:900; color:var(--green-dark);">50<sup style="font-size:1rem">人</sup></div>
-        <div style="font-size:0.82rem; color:var(--text-mid);">公司員工總數</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem;">
+      <div style="background:#fff;border-radius:12px;padding:1.2rem;text-align:center;box-shadow:var(--shadow);">
+        <div style="font-size:2rem;font-weight:900;color:var(--green-dark);">50<sup style="font-size:1rem">人</sup></div>
+        <div style="font-size:0.82rem;color:var(--text-mid);">公司員工總數</div>
       </div>
-      <div style="background:#fff; border-radius:12px; padding:1.2rem; text-align:center;">
-        <div style="font-size:2rem; font-weight:900; color:var(--green-dark);">40<sup style="font-size:1rem">人+</sup></div>
-        <div style="font-size:0.82rem; color:var(--text-mid);">專職專案工程師</div>
+      <div style="background:#fff;border-radius:12px;padding:1.2rem;text-align:center;box-shadow:var(--shadow);">
+        <div style="font-size:2rem;font-weight:900;color:var(--green-dark);">40<sup style="font-size:1rem">人+</sup></div>
+        <div style="font-size:0.82rem;color:var(--text-mid);">專職專案工程師</div>
       </div>
-      <div style="background:#fff; border-radius:12px; padding:1.2rem; text-align:center;">
-        <div style="font-size:2rem; font-weight:900; color:var(--green-dark);">100<sup style="font-size:1rem">件+</sup></div>
-        <div style="font-size:0.82rem; color:var(--text-mid);">累計設計監造案</div>
+      <div style="background:#fff;border-radius:12px;padding:1.2rem;text-align:center;box-shadow:var(--shadow);">
+        <div style="font-size:2rem;font-weight:900;color:var(--green-dark);">100<sup style="font-size:1rem">件+</sup></div>
+        <div style="font-size:0.82rem;color:var(--text-mid);">累計設計監造案</div>
       </div>
-      <div style="background:#fff; border-radius:12px; padding:1.2rem; text-align:center;">
-        <div style="font-size:2rem; font-weight:900; color:var(--green-dark);">14<sup style="font-size:1rem">分</sup></div>
-        <div style="font-size:0.82rem; color:var(--text-mid);">臺中辦公室到工地車程</div>
+      <div style="background:#fff;border-radius:12px;padding:1.2rem;text-align:center;box-shadow:var(--shadow);">
+        <div style="font-size:2rem;font-weight:900;color:var(--green-dark);">14<sup style="font-size:1rem">分</sup></div>
+        <div style="font-size:0.82rem;color:var(--text-mid);">臺中辦公室到工地車程</div>
       </div>
     </div>
 
-    <!-- 獲獎 -->
+    <!-- 工程實績彩圖 -->
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--green-dark);margin:0 0 1rem;">工程實績彩圖</h3>
+    <div class="img-grid img-grid-4">
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/portfolio_01.jpeg" alt="工程實績 1"></div>
+      </div>
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/portfolio_02.jpeg" alt="工程實績 2"></div>
+      </div>
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/portfolio_03.jpeg" alt="工程實績 3"></div>
+      </div>
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/portfolio_04.jpeg" alt="工程實績 4"></div>
+      </div>
+    </div>
+
+    <!-- 得獎 -->
     <div class="award-grid">
       <div class="award-card">
         <div class="award-icon">🏆</div>
@@ -1041,21 +669,88 @@
         <div class="award-icon">⭐</div>
         <div>
           <h4>近7成查核甲等</h4>
-          <p>千萬元以上案件查核甲等比例達 70%，品質管理成效卓著</p>
+          <p>千萬元以上案件查核甲等比例達 70%</p>
         </div>
+      </div>
+    </div>
+
+    <!-- 得獎照片 + 就近地圖 -->
+    <div class="img-grid img-grid-3" style="margin-top:2rem;">
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/award_01.jpeg" alt="公共工程優質獎 1"></div>
+        <div class="img-caption">彰化縣公共工程優質獎</div>
+      </div>
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/award_02.jpeg" alt="公共工程優質獎 2"></div>
+        <div class="img-caption">新北市公共工程優質獎</div>
+      </div>
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/award_03_map.jpeg" alt="辦公室到工地距離"></div>
+        <div class="img-caption">臺中辦公室距工地僅 14 分鐘</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CSR 企業社會責任 -->
+<!-- SUPERVISION -->
+<section id="supervision">
+  <div class="container">
+    <div class="section-label">監造計畫</div>
+    <div class="divider"></div>
+    <h2 class="section-title">施工監造實質作為</h2>
+    <p class="section-subtitle">採三級品管制度，嚴格確保施工品質，貫徹每一施工環節。</p>
+
+    <div class="img-grid img-grid-4">
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/supervision_01.jpeg" alt="監造現場 1"></div>
+        <div class="img-caption">防塵措施督導</div>
+      </div>
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/supervision_02.jpeg" alt="監造現場 2"></div>
+        <div class="img-caption">廢棄物清運督導</div>
+      </div>
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/supervision_03.jpeg" alt="監造現場 3"></div>
+        <div class="img-caption">施工查驗記錄</div>
+      </div>
+      <div>
+        <div class="img-item" onclick="openLightbox(this)"><img src="images/supervision_04.jpeg" alt="監造現場 4"></div>
+        <div class="img-caption">品質管理作業</div>
+      </div>
+    </div>
+
+    <div class="env-grid" style="margin-top:3rem;">
+      <div class="env-card">
+        <div class="env-icon">📋</div>
+        <h4>品質計畫審查</h4>
+        <p>依「公共工程施工品質管理作業要點」製作監造計畫，涵蓋品質管理標準、材料及施工檢驗程序、自主檢查表等。</p>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🔍</div>
+        <h4>施工查驗機制</h4>
+        <p>訂定施工檢驗停留點（Hold Point），以量化方式查驗，並填報查驗表單及檢附抽查相片，確保施工品質。</p>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">🏗️</div>
+        <h4>防塵與廢棄物管理</h4>
+        <p>物料堆置覆蓋防塵布/網，清運車採跟車督導，廢棄物依法運棄至合法場所，保護工地環境。</p>
+      </div>
+      <div class="env-card">
+        <div class="env-icon">⛑️</div>
+        <h4>職業安全衛生</h4>
+        <p>審核廠商安全衛生計畫、督導工地安全措施、召開安衛檢討會議，確保工地零災害目標。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CSR -->
 <section id="csr">
   <div class="container">
     <div class="section-label">企業社會責任</div>
     <div class="divider"></div>
     <h2 class="section-title">CSR 指標承諾</h2>
     <p class="section-subtitle">以具體數字兌現對員工與社會的責任承諾。</p>
-
     <div class="csr-grid">
       <div class="csr-card">
         <div class="csr-number">6<sub>次</sub></div>
@@ -1091,24 +786,18 @@
   </div>
 </section>
 
-<!-- CONCLUSION 結論 -->
+<!-- CONCLUSION -->
 <section id="conclusion">
   <div class="container">
     <div class="section-label">結論與建議</div>
     <div class="divider" style="background:rgba(255,255,255,0.3);"></div>
     <h2 class="section-title">全力以赴，使命必達</h2>
-
     <p class="conclusion-body">
-      本公司已組織完整專業服務團隊，派員至現場實地勘查，深度了解本次招標需求與目標，
-      並完成計畫範圍之現況調查與測量、改善方案評估、進度規劃及預算概估等前置作業，
-      技術服務已做好萬全準備。
+      本公司已組織完整專業服務團隊，派員至現場實地勘查，深度了解本次招標需求與目標，並完成計畫範圍之現況調查與測量、改善方案評估、進度規劃及預算概估等前置作業，技術服務已做好萬全準備。
       <br><br>
-      面對施工監造工作，本公司將採三級品管制度，嚴格確保施工品質，
-      指派合格工程人員與品管工程師駐守現場，督導承包商依契約設計圖及規範施工，
-      責成如期完工。本著認真負責之敬業精神，勢必將業主需求使命必達。
+      面對施工監造工作，本公司將採三級品管制度，嚴格確保施工品質，指派合格工程人員與品管工程師駐守現場，督導承包商依契約設計圖及規範施工，責成如期完工。本著認真負責之敬業精神，勢必將業主需求使命必達。
     </p>
-
-    <h3 style="font-size:1rem; font-weight:800; color:rgba(255,255,255,0.9); margin-bottom:1rem;">加值服務項目</h3>
+    <h3 style="font-size:1rem;font-weight:800;color:rgba(255,255,255,0.9);margin-bottom:1rem;">加值服務項目</h3>
     <div class="value-add-grid">
       <div class="value-add-item">無障礙設施維護</div>
       <div class="value-add-item">擋土牆改善</div>
@@ -1126,13 +815,23 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <strong>鵬程工程顧問有限公司</strong>
   彰化縣彰化市田中社區休憩公園建置工程 委託規劃設計及監造技術 服務建議書
-  <br>臺中市西屯區大墩二十街 116 號 7F-1 ｜ 負責人：彭成麒 技師
-  <br>民國 114 年 4 月
+  <br>臺中市西屯區大墩二十街 116 號 7F-1 ｜ 負責人：彭成麒 技師 ｜ 民國 114 年 4 月
 </footer>
 
+<script>
+  function openLightbox(el) {
+    const img = el.tagName === 'IMG' ? el : el.querySelector('img');
+    if (!img) return;
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+</script>
 </body>
 </html>
